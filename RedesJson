@@ -1,0 +1,32 @@
+{
+    "alumnos": [
+        {
+            "nombre": "Juan Pérez",
+            "matricula": "A001",
+            "asignaturas": [
+                {
+                    "nombre_asignatura": "Matemáticas",
+                    "nota": 8.5
+                },
+                {
+                    "nombre_asignatura": "Historia",
+                    "nota": 7.8
+                }
+            ]
+        },
+        {
+            "nombre": "María López",
+            "matricula": "A002",
+            "asignaturas": [
+                {
+                    "nombre_asignatura": "Matemáticas",
+                    "nota": 9
+                },
+                {
+                    "nombre_asignatura": "Inglés",
+                    "nota": 8.7
+                }
+            ]
+        }
+    ]
+}
