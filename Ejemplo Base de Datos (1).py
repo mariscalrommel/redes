@@ -1,10 +1,6 @@
 import json
 import psycopg2
 
-#sudo apt update
-#sudo apt install python3-psycopg2
-
-
 # Conexión a la base de datos PostgreSQL
 def conectar_postgres():
     try:
@@ -32,25 +28,40 @@ def crear_base_de_datos(cursor, nombre_bd):
 # Crear las tablas
 def crear_tablas(cursor):
     try:
-        # Tabla de alumnos
         cursor.execute("""
-        CREATE TABLE IF NOT EXISTS alumnos (
-            id SERIAL PRIMARY KEY,
-            nombre VARCHAR(100),
-            matricula VARCHAR(20)
+        CREATE TABLE IF NOT EXISTS Log (
+            Id_device INT PRIMARY KEY,
+            Status_report INT,
+            Time_server TIMESTAMP
         )
         """)
-        
-        # Tabla de asignaturas
+
         cursor.execute("""
-        CREATE TABLE IF NOT EXISTS asignaturas (
-            id SERIAL PRIMARY KEY,
-            nombre_asignatura VARCHAR(100),
-            nota DECIMAL(5, 2),
-            alumno_id INTEGER REFERENCES alumnos(id)
+        CREATE TABLE IF NOT EXISTS Data_2 (
+            Id_device INT,
+            Racc_x FLOAT,
+            Racc_y FLOAT,
+            Racc_z FLOAT,
+            Rgyr_x FLOAT,
+            Rgyr_y FLOAT,
+            Rgyr_z FLOAT,
+            Time_client TIMESTAMP,
+            PRIMARY KEY (Id_device),
+            FOREIGN KEY (Id_device) REFERENCES Log(Id_device)
         )
         """)
-        
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS configuration (
+            Id_device INT PRIMARY KEY,
+            TCP_PORT INT,
+            UDP_port INT,
+            Host_ip_addr INT,
+            Ssid VARCHAR(45),
+            Pass VARCHAR(45),
+            FOREIGN KEY (Id_device) REFERENCES Log(Id_device)
+        )
+        """)
+
         print("Tablas creadas exitosamente.")
     except Exception as e:
         print(f"Error al crear las tablas: {e}")
@@ -60,23 +71,30 @@ def insertar_datos_desde_json(cursor, archivo_json):
     try:
         with open(archivo_json, 'r') as archivo:
             datos = json.load(archivo)
-        
-        # Insertar alumnos
-        for alumno in datos['alumnos']:
-            cursor.execute("""
-            INSERT INTO alumnos (nombre, matricula) 
-            VALUES (%s, %s) RETURNING id
-            """, (alumno['nombre'], alumno['matricula']))
-            
-            alumno_id = cursor.fetchone()[0]
 
-            # Insertar asignaturas asociadas al alumno
-            for asignatura in alumno['asignaturas']:
-                cursor.execute("""
-                INSERT INTO asignaturas (nombre_asignatura, nota, alumno_id)
-                VALUES (%s, %s, %s)
-                """, (asignatura['nombre_asignatura'], asignatura['nota'], alumno_id))
-        
+        # Insertar datos en Log
+        for log in datos['Log']:
+            cursor.execute("""
+            INSERT INTO Log (Id_device, Status_report, Time_server)
+            VALUES (%s, %s, %s)
+            """, (log['Id_device'], log['Status_report'], log['Time_server']))
+
+        # Insertar datos en Data_2
+        for data in datos['Data_2']:
+            cursor.execute("""
+            INSERT INTO Data_2 (Id_device, Racc_x, Racc_y, Racc_z, Rgyr_x, Rgyr_y, Rgyr_z, Time_client)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            """, (data['Id_device'], data['Racc_x'], data['Racc_y'], data['Racc_z'], 
+                  data['Rgyr_x'], data['Rgyr_y'], data['Rgyr_z'], data['Time_client']))
+
+        # Insertar datos en configuration
+        for config in datos['configuration']:
+            cursor.execute("""
+            INSERT INTO configuration (Id_device, TCP_PORT, UDP_port, Host_ip_addr, Ssid, Pass)
+            VALUES (%s, %s, %s, %s, %s, %s)
+            """, (config['Id_device'], config['TCP_PORT'], config['UDP_port'], 
+                  config['Host_ip_addr'], config['Ssid'], config['Pass']))
+
         print("Datos insertados exitosamente desde el archivo JSON.")
     except Exception as e:
         print(f"Error al insertar datos desde JSON: {e}")
@@ -87,27 +105,21 @@ def main():
     if conexion:
         cursor = conexion.cursor()
         
-        # Crear base de datos (cambiar "alumnos_bd" si es necesario)
-        crear_base_de_datos(cursor, 'alumnos_bd')
-        
-        # Conectarse a la nueva base de datos
+        # Crear base de datos (cambiar "dispositivos_bd" si es necesario)
+        crear_base_de_datos(cursor, 'dispositivos_bd')
         cursor.close()
         conexion.close()
         
         conexion = psycopg2.connect(
             host="localhost",
-            database="alumnos_bd",
+            database="dispositivos_bd",
             user="postgres",
             password="tu_contraseña"
         )
         conexion.autocommit = True
         cursor = conexion.cursor()
-        
-        # Crear tablas
         crear_tablas(cursor)
-
-        # Insertar datos desde el archivo JSON
-        insertar_datos_desde_json(cursor, 'ejdb.json')
+        insertar_datos_desde_json(cursor, 'dispositivos.json')
         
         cursor.close()
         conexion.close()

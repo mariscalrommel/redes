@@ -1,30 +1,46 @@
 {
-    "alumnos": [
+    "dispositivos": [
         {
-            "nombre": "Juan Pérez",
-            "matricula": "A001",
-            "asignaturas": [
+            "Id_device": 1,
+            "Data_2": [
                 {
-                    "nombre_asignatura": "Matemáticas",
-                    "nota": 8.5
+                    "Racc_x": 10.5,
+                    "Racc_y": -5.2,
+                    "Racc_z": 3.1,
+                    "Rgyr_x": -500.0,
+                    "Rgyr_y": 250.0,
+                    "Rgyr_z": 100.0
                 },
                 {
-                    "nombre_asignatura": "Historia",
-                    "nota": 7.8
+                    "Racc_x": -8.4,
+                    "Racc_y": 12.3,
+                    "Racc_z": -6.7,
+                    "Rgyr_x": -400.0,
+                    "Rgyr_y": 200.0,
+                    "Rgyr_z": -150.0
+
                 }
             ]
         },
         {
-            "nombre": "María López",
-            "matricula": "A002",
-            "asignaturas": [
+            "Id_device": 2,
+            "Data_2": [
                 {
-                    "nombre_asignatura": "Matemáticas",
-                    "nota": 9
+                    "Racc_x": 15.0,
+                    "Racc_y": -3.0,
+                    "Racc_z": 7.0,
+                    "Rgyr_x": -300.0,
+                    "Rgyr_y": 150.0,
+                    "Rgyr_z": 50.0
+
                 },
                 {
-                    "nombre_asignatura": "Inglés",
-                    "nota": 8.7
+                    "Racc_x": -12.0,
+                    "Racc_y": 8.0,
+                    "Racc_z": -10.0,
+                    "Rgyr_x": -200.0,
+                    "Rgyr_y": 100.0,
+                    "Rgyr_z": -50.0
                 }
             ]
         }
