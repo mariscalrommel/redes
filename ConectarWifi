@@ -33,7 +33,7 @@ def verificar_conexion():
 
 if __name__ == '__main__':
     ssid = input("(SSID): ")
-    password = input("contraseña")
+    password = input("contraseña: ")
 
     conectar_wifi(ssid, password)
     verificar_conexion()
