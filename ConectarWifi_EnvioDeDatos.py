@@ -6,8 +6,8 @@ import random
 # Configuración de la red WiFi y del servidor
 SSID = "redesbeltran"  # Nombre de la red WiFi
 PASSWORD = "benjamin555"  # Contraseña de la red WiFi
-BROADCAST_IP = "10.3.141.255"  # Dirección de broadcast típica
-UDP_PORT = 25545  # Puerto de comunicación UDP
+BROADCAST_IP = "10.42.0.255"  # Dirección de broadcast típica
+UDP_PORT = 25555 # Puerto de comunicación UDPp
 
 def conectar_wifi(ssid, password):
     """Conecta al WiFi especificado."""

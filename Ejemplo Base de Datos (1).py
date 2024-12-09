@@ -3,9 +3,9 @@ import sqlite3
 import time
 
 #SQLite
-DB_NAME = "redlogs.db"
-RASPBERRY_IP = "0.0.0.0"  
-RASPBERRY_PORT = 12345
+DB_NAME = "redes.db"
+RASPBERRY_IP = "10.42.0.255"  
+RASPBERRY_PORT = 25555
 
 
 def conectar_db():
