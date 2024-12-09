@@ -1,4 +1,4 @@
-# Usar una imagen base de Python
+# Usar una imagen base de Pytho
 FROM python:3.10-slim
 WORKDIR /app
 COPY . /app
