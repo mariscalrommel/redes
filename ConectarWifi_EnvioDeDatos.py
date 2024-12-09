@@ -4,10 +4,10 @@ import socket
 import random
 
 # Configuración de la red WiFi y del servidor
-SSID = "NombreDeTuRedWiFi"  #  WiFi
-PASSWORD = "TuContraseñaWiFi"  #  contraseña  wifi
+SSID = "redesbeltran"  #  WiFi
+PASSWORD = "benjamin555"  #  contraseña  wifi
 RASPBERRY_IP = "192.168.1.100"  #  raspberry
-RASPBERRY_PORT = 12345
+RASPBERRY_PORT = 25545
 
 def conectar_wifi(ssid, password):
     print(f"Intentando conectar a la red WiFi '{ssid}'...")
