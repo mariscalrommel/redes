@@ -4,6 +4,13 @@ bY: ZakuG(Lucas Castro) , mariscalrommel(Benjamin Beltrán)
 
 Este repositorio contiene un script en Python que permite conectar a una red WiFi y transmitir datos de forma broadcast usando el protocolo UDP. El código está diseñado para ejecutarse en un contenedor Docker con soporte para `NetworkManager`.
 
+### Por qué se usó SQLite y no PostgreSQL
+
+- **Simplicidad**: SQLite es liviano y no requiere configuración adicional para este tipo de pruebas.
+- **Portabilidad**: Los archivos SQLite son fáciles de mover entre sistemas y no necesitan un servidor en ejecución.
+- **Uso del Espacio**: Ideal para entornos donde no se necesita una base de datos robusta y persistente.
+
+
 ## Requisitos Previos
 
 Asegúrate de cumplir con los siguientes requisitos antes de usar este proyecto:
@@ -94,12 +101,6 @@ def enviar_datos():
             print(f"Datos enviados: {datos}")
             time.sleep(1)
 ```
-
-### Por qué se usó SQLite y no PostgreSQL
-
-- **Simplicidad**: SQLite es liviano y no requiere configuración adicional para este tipo de pruebas.
-- **Portabilidad**: Los archivos SQLite son fáciles de mover entre sistemas y no necesitan un servidor en ejecución.
-- **Uso del Espacio**: Ideal para entornos donde no se necesita una base de datos robusta y persistente.
 
 ## Depuración
 
