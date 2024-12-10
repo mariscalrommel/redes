@@ -1,6 +1,6 @@
-Hola bienvenido a proyecto de redes de computadores de la universidad san sebastian , sede tres pascualas
+Hola bienvenido a proyecto de redes de computadores de la Universidad San Sebastian , sede tres pascualas
 
-bY: Zaku(Lucas Castro) , mariscalrommel(Benjamin Beltrán)
+bY: ZakuG(Lucas Castro) , mariscalrommel(Benjamin Beltrán)
 
 Este repositorio contiene un script en Python que permite conectar a una red WiFi y transmitir datos de forma broadcast usando el protocolo UDP. El código está diseñado para ejecutarse en un contenedor Docker con soporte para `NetworkManager`.
 
