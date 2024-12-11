@@ -102,7 +102,8 @@ def enviar_datos():
             time.sleep(1)
 ```
 
-## Depuración
 
-- Si encuentras el error `sh: 1: netsh: not found`, verifica que el contenedor esté usando `nmcli` en lugar de comandos específicos de Windows.
-- Usa `docker logs <container_id>` para revisar los registros del script.
+
+GRACIAS POR LLEGAR HASTA ACA
+
+mariscalrommel 10/12/2024
